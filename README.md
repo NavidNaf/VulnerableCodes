@@ -1,64 +1,57 @@
 # Vulnerable Code Samples
 
-This repository contains a collection of intentionally vulnerable applications written in various programming languages. The purpose of these samples is to demonstrate common security vulnerabilities that can be used for testing Static Application Security Testing (SAST) and Software Composition Analysis (SCA) tools.
+This repository contains a collection of intentionally vulnerable applications written in various programming languages. These samples are designed to demonstrate common security vulnerabilities for testing Static Application Security Testing (SAST) and Software Composition Analysis (SCA) tools.
 
-## Directory Overview
+## 📂 Directory Overview
 
-- **ASP.NET**: Contains a vulnerable ASP.NET application that demonstrates SQL injection, cross-site scripting (XSS), command injection, and plaintext secrets in configuration files.
+The table below lists the available vulnerable applications and their associated vulnerabilities:
 
-- **C**: Includes a vulnerable C application that demonstrates buffer overflow and SQL injection vulnerabilities.
+| Language      | Vulnerabilities |
+|--------------|----------------|
+| **ASP.NET**  | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **C**        | Buffer Overflow, SQL Injection |
+| **C++**      | Buffer Overflow, Command Injection |
+| **C#**       | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **Java**     | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **JavaScript** | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **Python**   | SQL Injection, XSS, Command Injection, Cryptographic Issues |
+| **Groovy**   | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **PHP**      | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **TypeScript** | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **Ruby**     | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **Go**       | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **Perl**     | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **CoffeeScript** | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **Dart**     | SQL Injection, XSS, Command Injection, Plaintext Secrets |
+| **Scala**    | SQL Injection, XSS, Command Injection, Plaintext Secrets |
 
-- **C++**: Contains a vulnerable C++ application that showcases buffer overflow and command injection vulnerabilities.
+## 🔍 Using SAST and SCA Scanners
 
-- **C#**: Features a vulnerable C# application that includes SQL injection, XSS, command injection, and plaintext secrets.
+To analyze vulnerabilities in this repository, use SAST and SCA tools following these steps:
 
-- **Java**: Contains a vulnerable Java application that demonstrates SQL injection, XSS, command injection, and plaintext secrets.
+### 1️⃣ Choose Your Tools
+Select appropriate SAST and SCA tools based on your security needs:
 
-- **JavaScript**: Includes a vulnerable JavaScript application that showcases SQL injection, XSS, command injection, and plaintext secrets.
+| Tool Type  | Recommended Tools |
+|------------|------------------|
+| **SAST**   | SonarQube, Checkmarx, Fortify, Veracode |
+| **SCA**    | OWASP Dependency-Check, Snyk, Black Duck |
 
-- **Python**: Contains a vulnerable Python application that demonstrates SQL injection, XSS, command injection, and cryptographic issues.
+### 2️⃣ Run SAST Scans
+- Configure the SAST tool to scan the root of this directory.
+- Identify vulnerabilities in the codebase (e.g., SQL injection, XSS, command injection, buffer overflows).
 
-- **Groovy**: Contains a vulnerable Groovy application that illustrates SQL injection, XSS, command injection, and plaintext secrets.
+### 3️⃣ Run SCA Scans
+- Use SCA tools to analyze dependencies listed in project files (`package.json`, `pom.xml`, `appsettings.json`, etc.).
+- Identify known vulnerabilities and outdated or insecure libraries.
 
-- **PHP**: Contains a vulnerable PHP application that demonstrates SQL injection, XSS, command injection, and plaintext secrets.
+### 4️⃣ Review Reports
+- Analyze the generated reports to understand the detected vulnerabilities.
+- Prioritize remediation efforts based on severity.
 
-- **TypeScript**: Includes a vulnerable TypeScript application that showcases SQL injection, XSS, command injection, and plaintext secrets.
+### 5️⃣ Remediation
+- Follow the recommended fixes from the SAST and SCA tools.
+- Apply secure coding practices and update dependencies where necessary.
 
-- **Ruby**: Contains a vulnerable Ruby application that demonstrates SQL injection, XSS, command injection, and plaintext secrets.
-
-- **Go**: Includes a vulnerable Go application that showcases SQL injection, XSS, command injection, and plaintext secrets.
-
-- **Perl**: Contains a vulnerable Perl application that demonstrates SQL injection, XSS, command injection, and plaintext secrets.
-
-- **CoffeeScript**: Includes a vulnerable CoffeeScript application that showcases SQL injection, XSS, command injection, and plaintext secrets.
-
-- **Dart**: Contains a vulnerable Dart application that demonstrates SQL injection, XSS, command injection, and plaintext secrets.
-
-- **Scala**: Includes a vulnerable Scala application that showcases SQL injection, XSS, command injection, and plaintext secrets.
-
-## Using SAST and SCA Scanners
-
-To analyze the vulnerabilities in this directory, you can use various SAST and SCA tools. Here are some general steps:
-
-1. **Choose Your Tools**: Select appropriate SAST and SCA tools based on your requirements. Popular options include:
-   - SAST Tools: SonarQube, Checkmarx, Fortify, Veracode
-   - SCA Tools: OWASP Dependency-Check, Snyk, Black Duck
-
-2. **Run SAST Scans**:
-   - Configure the SAST tool to point to the root of this directory.
-   - Run the scan to identify vulnerabilities in the codebase, such as SQL injection, XSS, command injection, and buffer overflows.
-
-3. **Run SCA Scans**:
-   - Use SCA tools to analyze the dependencies listed in the project files (e.g., `package.json`, `pom.xml`, `appsettings.json`, etc.).
-   - Identify any known vulnerabilities in the dependencies and check for outdated or insecure libraries.
-
-4. **Review Reports**:
-   - After running the scans, review the generated reports to understand the vulnerabilities present in the applications.
-   - Prioritize remediation efforts based on the severity of the vulnerabilities identified.
-
-5. **Remediation**:
-   - Address the vulnerabilities as per the recommendations provided by the SAST and SCA tools. This may include code fixes, updating dependencies, and implementing secure coding practices.
-
-## Disclaimer
-
-These applications are intentionally vulnerable and should only be used in a controlled environment for educational purposes. Do not deploy these applications in a production environment.
+## ⚠️ Disclaimer
+These applications are intentionally vulnerable and should only be used in a controlled environment for educational purposes. **Do not deploy these applications in a production environment.**
