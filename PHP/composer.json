@@ -1,0 +1,5 @@
+{
+    "require": {
+      "some/vulnerable-package": "dev-master"
+    }
+  }

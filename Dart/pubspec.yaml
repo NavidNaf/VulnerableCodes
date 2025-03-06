@@ -1,0 +1,6 @@
+name: vulnerable_dart_app
+version: 1.0.0
+description: A vulnerable Dart application.
+dependencies:
+  express: ^2.0.0
+  some_vulnerable_package: any  # Dependency issue

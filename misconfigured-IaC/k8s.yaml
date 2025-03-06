@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: my-container
+        image: my-image
+        securityContext:
+          privileged: true  # Vulnerable: Running as a privileged container

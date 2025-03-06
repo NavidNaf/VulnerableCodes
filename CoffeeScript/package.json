@@ -1,0 +1,16 @@
+{
+  "name": "vulnerable-coffee-app",
+  "version": "1.0.0",
+  "description": "A vulnerable CoffeeScript application.",
+  "main": "app.coffee",
+  "dependencies": {
+    "express": "^4.17.1",
+    "some-vulnerable-package": "latest"  // Dependency issue
+  },
+  "scripts": {
+    "start": "coffee app.coffee"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.12.7"
+  }
+}

@@ -1,0 +1,15 @@
+plugins {
+    id 'groovy'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy:3.0.8'
+    implementation 'org.sparkjava:spark-core:2.9.3'
+    implementation 'mysql:mysql-connector-java:8.0.26' // Dependency issue
+    implementation 'some-vulnerable-package' // Placeholder for a vulnerable package
+    // Add more dependencies to simulate dependency issues
+}

@@ -1,0 +1,18 @@
+{
+    "name": "vulnerable-ts-app",
+    "version": "1.0.0",
+    "description": "A vulnerable TypeScript application.",
+    "main": "src/app.ts",
+    "scripts": {
+      "start": "ts-node src/app.ts"
+    },
+    "dependencies": {
+      "express": "^4.17.1",
+      "pg": "^8.5.1",
+      "some-vulnerable-package": "latest"
+    },
+    "devDependencies": {
+      "ts-node": "^9.1.1",
+      "typescript": "^4.1.2"
+    }
+  }
