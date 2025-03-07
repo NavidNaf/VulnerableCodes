@@ -1,0 +1,17 @@
+# Use the official PHP image with Apache
+FROM php:8.0-apache
+
+# Set the working directory
+WORKDIR /var/www/html
+
+# Copy the PHP application files into the container
+COPY . .
+
+# Install any necessary PHP extensions (if needed)
+RUN docker-php-ext-install pdo pdo_sqlite
+
+# Expose port 8888
+EXPOSE 8888
+
+# Start the Apache server
+CMD ["apache2-foreground"]

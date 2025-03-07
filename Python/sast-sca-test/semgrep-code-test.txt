@@ -1,0 +1,192 @@
+semgrep scan
+
+┌──── ○○○ ────┐
+│ Semgrep CLI │
+└─────────────┘
+
+METRICS: Using configs from the Registry (like --config=p/ci) reports pseudonymous rule metrics to semgrep.dev.
+To disable Registry rule metrics, use "--metrics=off".
+Using configs only from local files (like --config=xyz.yml) does not enable metrics.
+
+More information: https://semgrep.dev/docs/metrics
+
+
+Scanning 10 files (only git-tracked) with:
+
+✔ Semgrep OSS
+  ✔ Basic security coverage for first-party code vulnerabilities.
+
+✘ Semgrep Code (SAST)
+  ✘ Find and fix vulnerabilities in the code you write with advanced scanning and
+expert security rules.
+
+✘ Semgrep Supply Chain (SCA)
+  ✘ Find and fix the reachable vulnerabilities in your OSS dependencies.
+
+💎 Get started with all Semgrep products via `semgrep login`.
+✨ Learn more at https://sg.run/cloud.
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+
+
+┌──────────────────┐
+│ 14 Code Findings │
+└──────────────────┘
+
+    app.py
+    ❯❱ python.django.security.injection.sql.sql-injection-using-db-cursor-execute.sql-injection-
+       db-cursor-execute
+          User-controlled data from a request is passed to 'execute()'. This could lead
+          to a SQL injection and therefore protected information could be leaked.
+          Instead, use django's QuerySets, which are built with query parameterization
+          and therefore not vulnerable to sql injection. For example, you could use
+          `Entry.objects.filter(date=2006)`.
+          Details: https://sg.run/qx7y
+
+           40┆ user_id = request.args.get('user_id')
+           41┆ # Vulnerable to SQL Injection
+           42┆ conn = sqlite3.connect('demo.db')
+           43┆ c = conn.cursor()
+           44┆ query = f"SELECT * FROM users WHERE id = {user_id}"  # Vulnerable to
+               SQL injection
+           45┆ c.execute(query)
+
+   ❯❯❱ python.django.security.injection.tainted-sql-string.tainted-sql-string
+          Detected user input used to manually construct a SQL string. This is usually
+          bad practice because manual construction could accidentally result in a SQL
+          injection. An attacker could use a SQL injection to steal or modify contents of
+          the database. Instead, use a parameterized query which is available by default
+          in most database engines. Alternatively, consider using the Django object-
+          relational mappers (ORM) instead of raw SQL queries.
+          Details: https://sg.run/PbZp
+
+           44┆ query = f"SELECT * FROM users WHERE id = {user_id}"  # Vulnerable to
+               SQL injection
+
+   ❯❯❱ python.flask.security.injection.tainted-sql-string.tainted-sql-string
+          Detected user input used to manually construct a SQL string. This is usually
+          bad practice because manual construction could accidentally result in a SQL
+          injection. An attacker could use a SQL injection to steal or modify contents of
+          the database. Instead, use a parameterized query which is available by default
+          in most database engines. Alternatively, consider using an object-relational
+          mapper (ORM) such as SQLAlchemy which will protect your queries.
+          Details: https://sg.run/JxZj
+
+           44┆ query = f"SELECT * FROM users WHERE id = {user_id}"  # Vulnerable to
+               SQL injection
+
+    ❯❱ python.lang.security.audit.formatted-sql-query.formatted-sql-query
+          Detected possible formatted SQL query. Use parameterized queries instead.
+          Details: https://sg.run/EkWw
+
+           45┆ c.execute(query)
+
+   ❯❯❱ python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query
+          Avoiding SQL string concatenation: untrusted input concatenated with raw SQL
+          query can result in SQL Injection. In order to execute raw query safely,
+          prepared statement should be used. SQLAlchemy provides TextualSQL to easily
+          used prepared statement with named parameters. For complex SQL composition, use
+          SQL Expression Language or Schema Definition Language. In most cases,
+          SQLAlchemy ORM will be a better option.
+          Details: https://sg.run/2b1L
+
+           45┆ c.execute(query)
+
+    ❯❱ python.flask.security.audit.directly-returned-format-string.directly-returned-format-
+       string
+          Detected Flask route directly returning a formatted string. This is subject to
+          cross-site scripting if user input can reach the string. Consider using the
+          template engine instead and rendering pages with 'render_template()'.
+          Details: https://sg.run/Zv6o
+
+           55┆ return f"<h1>Hello, {name}</h1>"  # Output without escaping to allow
+               XSS
+
+    ❯❱ python.django.security.injection.raw-html-format.raw-html-format
+          Detected user input flowing into a manually constructed HTML string. You may be
+          accidentally bypassing secure methods of rendering HTML by manually
+          constructing HTML and this could create a cross-site scripting vulnerability,
+          which could let attackers steal sensitive user data. To be sure this is safe,
+          check that the HTML is rendered safely. Otherwise, use templates
+          (`django.shortcuts.render`) which will safely render HTML instead.
+          Details: https://sg.run/oYj1
+
+           55┆ return f"<h1>Hello, {name}</h1>"  # Output without escaping to allow
+               XSS
+
+    ❯❱ python.flask.security.injection.raw-html-concat.raw-html-format
+          Detected user input flowing into a manually constructed HTML string. You may be
+          accidentally bypassing secure methods of rendering HTML by manually
+          constructing HTML and this could create a cross-site scripting vulnerability,
+          which could let attackers steal sensitive user data. To be sure this is safe,
+          check that the HTML is rendered safely. Otherwise, use templates
+          (`flask.render_template`) which will safely render HTML instead.
+          Details: https://sg.run/Pb7e
+
+           55┆ return f"<h1>Hello, {name}</h1>"  # Output without escaping to allow
+               XSS
+
+   ❯❯❱ python.lang.security.dangerous-system-call.dangerous-system-call
+          Found user-controlled data used in a system call. This could allow a malicious
+          actor to execute commands. Use the 'subprocess' module instead, which is easier
+          to use without accidentally exposing a command injection vulnerability.
+          Details: https://sg.run/k0W7
+
+           62┆ output = os.popen(command).read()
+
+    ❯❱ python.flask.security.audit.directly-returned-format-string.directly-returned-format-
+       string
+          Detected Flask route directly returning a formatted string. This is subject to
+          cross-site scripting if user input can reach the string. Consider using the
+          template engine instead and rendering pages with 'render_template()'.
+          Details: https://sg.run/Zv6o
+
+           63┆ return f"<pre>Command Output: {escape(output)}</pre>"
+
+    ❯❱ python.django.security.injection.raw-html-format.raw-html-format
+          Detected user input flowing into a manually constructed HTML string. You may be
+          accidentally bypassing secure methods of rendering HTML by manually
+          constructing HTML and this could create a cross-site scripting vulnerability,
+          which could let attackers steal sensitive user data. To be sure this is safe,
+          check that the HTML is rendered safely. Otherwise, use templates
+          (`django.shortcuts.render`) which will safely render HTML instead.
+          Details: https://sg.run/oYj1
+
+           63┆ return f"<pre>Command Output: {escape(output)}</pre>"
+
+    ❯❱ python.flask.security.injection.raw-html-concat.raw-html-format
+          Detected user input flowing into a manually constructed HTML string. You may be
+          accidentally bypassing secure methods of rendering HTML by manually
+          constructing HTML and this could create a cross-site scripting vulnerability,
+          which could let attackers steal sensitive user data. To be sure this is safe,
+          check that the HTML is rendered safely. Otherwise, use templates
+          (`flask.render_template`) which will safely render HTML instead.
+          Details: https://sg.run/Pb7e
+
+           63┆ return f"<pre>Command Output: {escape(output)}</pre>"
+
+    ❯❱ python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host
+          Running flask app with host 0.0.0.0 could expose the server publicly.
+          Details: https://sg.run/eLby
+
+           67┆ app.run(debug=True, host='0.0.0.0', port=6789)
+
+    ❯❱ python.flask.security.audit.debug-enabled.debug-enabled
+          Detected Flask app with debug=True. Do not deploy to production with this flag
+          enabled as it will leak sensitive information. Instead, consider using Flask
+          configuration variables or setting 'debug' using system environment variables.
+          Details: https://sg.run/dKrd
+
+           67┆ app.run(debug=True, host='0.0.0.0', port=6789)
+
+
+
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+Some files were skipped or only partially analyzed.
+  Scan was limited to files tracked by git.
+
+Ran 290 rules on 10 files: 14 findings.
+💎 Missed out on 1318 pro rules since you aren't logged in!
+⚡ Supercharge Semgrep OSS when you create a free account at https://sg.run/rules.

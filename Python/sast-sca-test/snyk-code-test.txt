@@ -1,0 +1,47 @@
+snyk code test
+
+Testing /Users/navidfazle.rabbi/Documents/Project/smithy-visualizer/VulnerableCodes/Python ...
+
+ ✗ [Low] Use of Hardcoded Credentials
+   Path: config.py, line 2
+   Info: Do not hardcode credentials in code. Found hardcoded credential used in here.
+
+ ✗ [Medium] Use of Hardcoded Credentials
+   Path: config.py, line 1
+   Info: Do not hardcode passwords in code. Found hardcoded password used in DB_PASSWORD.
+
+ ✗ [Medium] Debug Mode Enabled
+   Path: app.py, line 67
+   Info: Running the application in debug mode (debug flag is set to True in run) is a security risk if the application is accessible by untrusted parties.
+
+ ✗ [Medium] Cross-site Scripting (XSS)
+   Path: app.py, line 49
+   Info: Unsanitized input from a database flows into the return value of sqli, where it is used to render an HTML page returned to the user. This may result in a Cross-Site Scripting attack (XSS).
+
+ ✗ [High] Command Injection
+   Path: app.py, line 62
+   Info: Unsanitized input from an HTTP parameter flows into os.popen, where it is used as a shell command. This may result in a Command Injection vulnerability.
+
+ ✗ [High] Hardcoded Secret
+   Path: config.py, line 2
+   Info: Avoid hardcoding values that are meant to be secret. Found a hardcoded string used in here.
+
+ ✗ [High] SQL Injection
+   Path: app.py, line 45
+   Info: Unsanitized input from an HTTP parameter flows into execute, where it is used in an SQL query. This may result in an SQL Injection vulnerability.
+
+ ✗ [High] Cross-site Scripting (XSS)
+   Path: app.py, line 55
+   Info: Unsanitized input from an HTTP parameter flows into the return value of xss, where it is used to render an HTML page returned to the user. This may result in a Cross-Site Scripting attack (XSS).
+
+
+✔ Test completed
+
+Organization:      navidfazlerabbi-Buz7r8m9Ziv7ynAqH4kj67
+Test type:         Static code analysis
+Project path:      /Users/navidfazle.rabbi/Documents/Project/smithy-visualizer/VulnerableCodes/Python
+
+Summary:
+
+  8 Code issues found
+  4 [High]   3 [Medium]   1 [Low]

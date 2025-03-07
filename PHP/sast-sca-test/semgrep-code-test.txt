@@ -1,0 +1,91 @@
+semgrep scan
+
+┌──── ○○○ ────┐
+│ Semgrep CLI │
+└─────────────┘
+
+
+Scanning 9 files (only git-tracked) with:
+
+✔ Semgrep OSS
+  ✔ Basic security coverage for first-party code vulnerabilities.
+
+✘ Semgrep Code (SAST)
+  ✘ Find and fix vulnerabilities in the code you write with advanced scanning and
+expert security rules.
+
+✘ Semgrep Supply Chain (SCA)
+  ✘ Find and fix the reachable vulnerabilities in your OSS dependencies.
+
+💎 Get started with all Semgrep products via `semgrep login`.
+✨ Learn more at https://sg.run/cloud.
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+
+
+┌─────────────────┐
+│ 6 Code Findings │
+└─────────────────┘
+
+    dockerfile
+   ❯❯❱ dockerfile.security.missing-user.missing-user
+          By not specifying a USER, a program in the container may run as 'root'. This is
+          a security hazard. If an attacker can control a process running as root, they
+          may have control over the container. Ensure that the last USER in a Dockerfile
+          is a USER other than 'root'.
+          Details: https://sg.run/Gbvn
+
+           ▶▶┆ Autofix ▶ USER non-root CMD ["apache2-foreground"]
+           17┆ CMD ["apache2-foreground"]
+
+    index.php
+   ❯❯❱ php.lang.security.injection.tainted-sql-string.tainted-sql-string
+          User data flows into this manually-constructed SQL string. User data can be
+          safely inserted into SQL strings using prepared statements or an object-
+          relational mapper (ORM). Manually-constructed SQL strings is a possible
+          indicator of SQL injection, which could let an attacker steal or manipulate
+          data from the database. Instead, use prepared statements
+          (`$mysqli->prepare("INSERT INTO test(id, label) VALUES (?, ?)");`) or a safe
+          library.
+          Details: https://sg.run/lZYG
+
+           18┆ $query = "SELECT * FROM users WHERE id = '$user_id'"; // Vulnerable
+               to SQL injection
+
+    ❯❱ php.lang.security.injection.tainted-callable.tainted-callable
+          Callable based on user input risks remote code execution.
+          Details: https://sg.run/YGb33
+
+           19┆ $stmt = $db->prepare($query);
+
+   ❯❯❱ php.lang.security.exec-use.exec-use
+          Executing non-constant commands. This can lead to command injection.
+          Details: https://sg.run/5Q1j
+
+           39┆ $output = shell_exec($command);
+
+    ❯❱ php.lang.security.injection.tainted-exec.tainted-exec
+          User input is passed to a function that executes a shell command. This can lead
+          to remote code execution.
+          Details: https://sg.run/kxEEz
+
+           39┆ $output = shell_exec($command);
+
+   ❯❯❱ php.lang.security.tainted-exec.tainted-exec
+          Executing non-constant commands. This can lead to command injection. You should
+          use `escapeshellarg()` when using command.
+          Details: https://sg.run/JAkP
+
+           39┆ $output = shell_exec($command);
+
+
+
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+Some files were skipped or only partially analyzed.
+  Scan was limited to files tracked by git.
+
+Ran 94 rules on 9 files: 6 findings.
+💎 Missed out on 1318 pro rules since you aren't logged in!
+⚡ Supercharge Semgrep OSS when you create a free account at https://sg.run/rules.

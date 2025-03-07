@@ -2,6 +2,13 @@
 
 This repository contains a collection of intentionally vulnerable applications written in various programming languages. These samples are designed to demonstrate common security vulnerabilities for testing Static Application Security Testing (SAST) and Software Composition Analysis (SCA) tools.
 
+## ✨ Latest Changes
+
+| Date       | Release Version | Changes                                                                 |
+|------------|------------------|-------------------------------------------------------------------------|
+| 2025-03-07 | v1.0.0           | Initial release of vulnerable code in different languages.          |
+| 2025-03-08 | v1.0.1           | Fixed Python and PHP applications with vulnerable code. Added a Dockerfile for PHP. Added COMPARISON.md in the PHP and Python directories to compare Snyk and Semgrep findings. In future releases, all other directories will be updated.|
+
 ## 📂 Directory Overview
 
 The table below lists the available vulnerable applications and their associated vulnerabilities:

@@ -1,0 +1,25 @@
+Testing /Users/navidfazle.rabbi/Documents/Project/smithy-visualizer/VulnerableCodes/PHP ...
+
+ ✗ [High] Command Injection
+   Path: index.php, line 39
+   Info: Unsanitized input from an HTTP parameter flows into shell_exec, where it is used to build a shell command. This may result in a Command Injection vulnerability.
+
+ ✗ [High] SQL Injection
+   Path: index.php, line 19
+   Info: Unsanitized input from an HTTP parameter flows into prepare, where it is used in an SQL query. This may result in an SQL Injection vulnerability.
+
+ ✗ [High] Cross-site Scripting (XSS)
+   Path: index.php, line 32
+   Info: Unsanitized input from an HTTP parameter flows into the echo statement, where it is used to render an HTML page returned to the user. This may result in a Cross-Site Scripting attack (XSS).
+
+
+✔ Test completed
+
+Organization:      navidfazlerabbi-Buz7r8m9Ziv7ynAqH4kj67
+Test type:         Static code analysis
+Project path:      /Users/navidfazle.rabbi/Documents/Project/smithy-visualizer/VulnerableCodes/PHP
+
+Summary:
+
+  3 Code issues found
+  3 [High]
