@@ -1,6 +1,6 @@
 # SAST and SCA Comparison
 
-This document compares the findings from the Semgrep and Snyk static analysis tools for the Python application located in `/Users/navidfazle.rabbi/Documents/Project/smithy-visualizer/VulnerableCodes/Python`.
+This document compares the findings from the Semgrep and Snyk static analysis tools for the Python application.
 
 ## Semgrep Findings
 

@@ -1,6 +1,6 @@
 # SAST and SCA Comparison for PHP Application
 
-This document compares the findings from the Semgrep and Snyk static analysis tools for the PHP application located in `/Users/navidfazle.rabbi/Documents/Project/smithy-visualizer/VulnerableCodes/PHP`.
+This document compares the findings from the Semgrep and Snyk static analysis tools for the PHP application.
 
 ## Semgrep Findings
 
